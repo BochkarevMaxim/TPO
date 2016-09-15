@@ -43,6 +43,7 @@ bool IsComandLineParametresNumbers(vector<string>& paramsCL);
 bool IsSideValuesNotNegative(const vector<double>& sides); 
 Triangle GetTriangleType(vector<double> & sides);
 void PrintResult(vector<double> & sides);
+void ReplaceDotWithComma(const char * str, string& res);
 
 
 int main(int argc, char* argv[])
@@ -69,6 +70,7 @@ int main(int argc, char* argv[])
 			cout << endl << "не являются числами. Проверьте ввод.";
 			return ERROR;
 		}
+		
 		ReadParamsFromCL(paramsCL, sideValues);
 
 		if (!IsSideValuesNotNegative(sideValues))
@@ -80,9 +82,9 @@ int main(int argc, char* argv[])
 
 		PrintResult(sideValues);
 	}
-	
 	return SUCCESS;
 }
+
 
 void PrintResult(vector<double> & sides)
 {
@@ -106,6 +108,7 @@ void PrintResult(vector<double> & sides)
 }
 Triangle GetTriangleType(vector<double> & sides)
 {
+
 	if (((sides[0] + sides[1]) <= sides[2]) || 
 		((sides[1] + sides[2]) <= sides[0]) ||
 		((sides[0] + sides[2]) <= sides[1]))
@@ -123,11 +126,23 @@ Triangle GetTriangleType(vector<double> & sides)
 
 	return Triangle::COMMON;
 }
+void ReplaceDotWithComma(const char * str, string& res)
+{
+	res = str;
+	size_t found = res.find_first_of(".");
+	if (found != string::npos)
+	{
+		res.replace(found, 1, ",");
+	}
+}
 void ReadParamsFromCL(vector<string>& paramsCL, vector<double>& sides)
 {
+	double temp = 0.0;
 	for (int i = 0; i <= 2; i++)
 	{
-		double temp = stod(paramsCL[i], NULL);
+		string s; 
+		ReplaceDotWithComma(paramsCL[i].c_str(), s);
+		temp = stod(s);
 		sides[i] = temp;
 	}
 }
