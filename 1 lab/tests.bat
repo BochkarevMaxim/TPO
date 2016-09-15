@@ -55,6 +55,10 @@ triangle.exe 3.0 4.0 5.0 > result.txt
 fc /b result.txt tests/common.txt
 IF ERRORLEVEL 1 GOTO testsFailed
 
+triangle.exe 3.3 4.1 6.0 > result.txt
+fc /b result.txt tests/common.txt
+IF ERRORLEVEL 1 GOTO testsFailed
+
 echo =====================================================
 echo -----Run with correct parametres (equilateral triangle)
 echo =====================================================
@@ -62,10 +66,18 @@ triangle.exe 7.0 7.0 7.0 > result.txt
 fc /b result.txt tests/equilateral.txt
 IF ERRORLEVEL 1 GOTO testsFailed
 
+triangle.exe 7.211 7.211 7.211 > result.txt
+fc /b result.txt tests/equilateral.txt
+IF ERRORLEVEL 1 GOTO testsFailed
+
 echo =====================================================
 echo -----Run with correct parametres (isosceles triangle)
 echo =====================================================
 triangle.exe 7.0 7.0 12.0 > result.txt
+fc /b result.txt tests/isosceles.txt
+IF ERRORLEVEL 1 GOTO testsFailed
+
+triangle.exe 17.420 17.420 12.0 > result.txt
 fc /b result.txt tests/isosceles.txt
 IF ERRORLEVEL 1 GOTO testsFailed
 
