@@ -49,7 +49,6 @@ void ReplaceDotWithComma(const char * str, string& res);
 int main(int argc, char* argv[])
 {
 	setlocale(LC_ALL, "RUS");
-
 	vector<double> sideValues(3, 0.0);
 
 	if (argc != 4)
